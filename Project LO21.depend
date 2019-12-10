@@ -1,0 +1,60 @@
+# depslib dependency file v1.0
+1575483277 source:c:\users\victor\desktop\lo21\project lo21\main.c
+	<stdio.h>
+	<stdlib.h>
+	"BibIndiv.h"
+	"BibPop.h"
+	<time.h>
+
+1575483251 source:c:\users\victor\desktop\lo21\project lo21\bibpop.c
+	"BibPop.h"
+	"BibGeneral.h"
+	"BibIndiv.h"
+
+1575482904 c:\users\victor\desktop\lo21\project lo21\bibpop.h
+	"BibGeneral.h"
+
+1575473313 source:c:\users\victor\desktop\lo21\project lo21\bibindiv.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"BibIndiv.h"
+
+1575153509 c:\users\victor\desktop\lo21\project lo21\bibindiv.h
+	"BibGeneral.h"
+
+1575483228 c:\users\victor\desktop\lo21\project lo21\bibgeneral.h
+	<stdio.h>
+	<stdlib.h>
+
+1575973436 source:d:\bureau\lo21\project lo21\bibindiv.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"BibIndiv.h"
+	"BibGeneral.h"
+	<math.h>
+
+1575973251 d:\bureau\lo21\project lo21\bibindiv.h
+	"BibGeneral.h"
+
+1575971129 d:\bureau\lo21\project lo21\bibgeneral.h
+	<stdio.h>
+	<stdlib.h>
+
+1575976101 source:d:\bureau\lo21\project lo21\bibpop.c
+	"BibPop.h"
+	"BibGeneral.h"
+	"BibIndiv.h"
+
+1575482906 d:\bureau\lo21\project lo21\bibpop.h
+	"BibGeneral.h"
+
+1575976254 source:d:\bureau\lo21\project lo21\main.c
+	<stdio.h>
+	<stdlib.h>
+	"BibGeneral.h"
+	"BibIndiv.h"
+	"BibPop.h"
+	<time.h>
+
