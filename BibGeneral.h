@@ -16,7 +16,7 @@
 #define TSELECT 0.5
 // Nombre de générations:
 #define NGEN 20
-
+//victor c'est un connard un fdp
 #include <stdio.h>
 #include <stdlib.h>
 
