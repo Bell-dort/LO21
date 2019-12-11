@@ -5,7 +5,7 @@
 #include <math.h>
 #include "BibGeneral.h"
 
-void p_croise(Individu* l1, Individu* l2)
+void p_croise(Individu* l1, Individu* l2)       //croise 2 individus entre eux en invertissant leurs Bits
 {
     int pt, proba;
     double probaR,k=0;
@@ -14,13 +14,13 @@ void p_croise(Individu* l1, Individu* l2)
 
     ElemBit* temp = malloc(sizeof(ElemBit*));
 
-    pt = PCROISE * 100;
+    pt = PCROISE * 100;                         //met la probabilité PCROISE sous forme de pourcentage
 
-    while(p->next != NULL || m->next != NULL)
+    while(p->next != NULL || m->next != NULL)      //on teste la probabilite pour chaque element des listes
     {
         proba = rand()%pt;
 
-        if(proba<(pt/2))
+        if(proba<(pt/2))                        //il y a 1 chance sur 2 que les Bits soient intervertis
         {
             temp->value = p->value;
             p->value = m->value;
@@ -55,7 +55,7 @@ Individu* initialisation(Individu* indiv) //Initialisation de la liste de Bit d'
 
 Individu* initialisation_recur(Individu* indiv, int longlist) //Initialisation de la liste de Bit d'un individu (RECURSIF)
 {
-    if(longlist>0)
+    if(longlist>0)                                  //condition d'arrêt : si on arrive à la fin de la liste, on arrête d'ajouter des élements
     {
         ElemBit* p = malloc(sizeof(ElemBit*));
         p = indiv->head;
@@ -68,12 +68,12 @@ Individu* initialisation_recur(Individu* indiv, int longlist) //Initialisation d
     return indiv;
 }
 
-int est_vide(Individu* l)
+int est_vide(Individu* l)                       //vérifie si une liste donnée l est vide ou non
 {
-	return l == NULL;
+	return (l == NULL);
 }
 
-Individu* ajouter_head(Individu* l,Bit a)
+Individu* ajouter_head(Individu* l,Bit a)       //ajoute une valeur a en tete de liste
 {
 	ElemBit *e = malloc(sizeof(ElemBit*));
 	e->value = a;
@@ -82,7 +82,7 @@ Individu* ajouter_head(Individu* l,Bit a)
 	return l;
 }
 
-Individu* ajouter_queue(Individu* l,Bit a)
+Individu* ajouter_queue(Individu* l,Bit a)      //ajoute une valeur a en fin de liste
 {
     ElemBit* p = malloc(sizeof(ElemBit*));
 
@@ -108,7 +108,7 @@ Individu* ajouter_queue(Individu* l,Bit a)
 }
 
 
-void afficher_individu(Individu* l)
+void afficher_individu(Individu* l)         //affiche un individu
 {
     int i;
     ElemBit* temp = malloc(sizeof(ElemBit*));
@@ -117,7 +117,7 @@ void afficher_individu(Individu* l)
 	{
 		temp = l->head;
 		printf("[");
-		for (i = 0; i < l->longIndiv; i++)
+		for (i = 0; i < l->longIndiv; i++)  //affiche 1 par 1 les éléments de la liste
 		{
 			printf(" %d ",temp->value);
 			temp = temp->next;
@@ -131,21 +131,22 @@ void afficher_individu(Individu* l)
 	printf("\n\n");
 }
 
-int decodage(Individu* l)
+int decodage(Individu* l)               //lit la liste de Bits d'un individu et en calcule sa valeur
 {
 	int valIndiv=0,i=LONGINDIV - 1;
 	ElemBit* temp = l->head;
 
 	while(temp->next != NULL)
     {
-        valIndiv += (temp->value)*pow(2,i);
+        valIndiv += (temp->value)*pow(2,i);         //calcule la valeur des Bits en commencant par le Bit le plus fort
         i--;
         temp = temp->next;
     }
 	return valIndiv;
 }
 
-float qualiteIndivf1(int valIndiv, Individu* l)
+float qualiteIndivf1(int valIndiv, Individu* l)     /*première version de la fonction qui calcule la qualité d'un individu à partir de sa valeur,
+                                                     obtenue par la fonction "decodage"*/
 {
     int longIndiv = 8;
     int A = -1,B = 1;
@@ -157,7 +158,8 @@ float qualiteIndivf1(int valIndiv, Individu* l)
 	return resultat;
 }
 
-float qualiteIndivf2(int valIndiv, Individu* l)
+float qualiteIndivf2(int valIndiv, Individu* l)     /*deuxieme version de la fonction qui calcule la qualité d'un individu à partir de sa valeur,
+                                                     obtenue par la fonction "decodage"*/
 {
     int longIndiv = 16;
     float A = 0.1,B = 5;
@@ -169,7 +171,8 @@ float qualiteIndivf2(int valIndiv, Individu* l)
 	return resultat;
 }
 
-float qualiteIndivf3(int valIndiv, Individu* l)
+float qualiteIndivf3(int valIndiv, Individu* l)     /*troisième version de la fonction qui calcule la qualité d'un individu à partir de sa valeur,
+                                                     obtenue par la fonction "decodage"*/
 {
     int longIndiv = 32;
     float A = (-M_PI),B = M_PI;
