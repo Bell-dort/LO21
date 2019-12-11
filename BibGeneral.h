@@ -3,12 +3,9 @@
 // On place ici des constantes du préprocesseur
 // pour faciliter le changement des paramètres du projet
 
-#define A -1
-#define B 1
-
 // Longueur d'un individu:
 #define LONGINDIV 8
-// Probabilité de croissement:
+// Probabilité de croisement:
 #define PCROISE 0.5
 // Taille de la population:
 #define TAILLEPOP 5

@@ -58,3 +58,34 @@
 	"BibPop.h"
 	<time.h>
 
+1575976298 source:c:\users\thoma\google drive\project lo21\bibpop.c
+	"BibPop.h"
+	"BibGeneral.h"
+	"BibIndiv.h"
+
+1575482906 c:\users\thoma\google drive\project lo21\bibpop.h
+	"BibGeneral.h"
+
+1576066132 c:\users\thoma\google drive\project lo21\bibgeneral.h
+	<stdio.h>
+	<stdlib.h>
+
+1576066869 c:\users\thoma\google drive\project lo21\bibindiv.h
+	"BibGeneral.h"
+
+1575976254 source:c:\users\thoma\google drive\project lo21\main.c
+	<stdio.h>
+	<stdlib.h>
+	"BibGeneral.h"
+	"BibIndiv.h"
+	"BibPop.h"
+	<time.h>
+
+1576067235 source:c:\users\thoma\google drive\project lo21\bibindiv.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"BibIndiv.h"
+	<math.h>
+	"BibGeneral.h"
+
