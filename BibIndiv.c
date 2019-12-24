@@ -20,7 +20,7 @@ void p_croise(Individu* l1, Individu* l2)       //croise 2 individus entre eux e
     {
         proba = rand()%pt;
 
-        if(proba<(pt/2))                        
+        if(proba<(pt/2))
         {
             temp->value = p->value;
             p->value = m->value;
@@ -145,20 +145,20 @@ int decodage(Individu* l)               //lit la liste de Bits d'un individu et 
 	return valIndiv;
 }
 
-float qualiteIndivf1(int valIndiv, Individu* l)     /*première version de la fonction qui calcule la qualité d'un individu à partir de sa valeur,
-                                                     obtenue par la fonction "decodage"*/
+float qualiteIndivf1(int valIndiv)     /*première version de la fonction qui calcule la qualité d'un individu à partir de sa valeur,
+                                                obtenue par la fonction "decodage"*/
 {
     int longIndiv = 8;
     int A = -1,B = 1;
-	float resultat,X;
+	double resultat,X;
 
 	X = (valIndiv / powf(2,longIndiv)) * (B - A) + A;
 	resultat = - powf(X,2);
-
 	return resultat;
 }
 
-float qualiteIndivf2(int valIndiv, Individu* l)     /*deuxieme version de la fonction qui calcule la qualité d'un individu à partir de sa valeur,
+
+float qualiteIndivf2(int valIndiv)     /*deuxieme version de la fonction qui calcule la qualité d'un individu à partir de sa valeur,
                                                      obtenue par la fonction "decodage"*/
 {
     int longIndiv = 16;
@@ -171,7 +171,7 @@ float qualiteIndivf2(int valIndiv, Individu* l)     /*deuxieme version de la fon
 	return resultat;
 }
 
-float qualiteIndivf3(int valIndiv, Individu* l)     /*troisième version de la fonction qui calcule la qualité d'un individu à partir de sa valeur,
+float qualiteIndivf3(int valIndiv)     /*troisième version de la fonction qui calcule la qualité d'un individu à partir de sa valeur,
                                                      obtenue par la fonction "decodage"*/
 {
     int longIndiv = 32;

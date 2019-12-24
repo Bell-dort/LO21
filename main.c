@@ -9,18 +9,22 @@ int main()
 {
     srand(time(NULL));
 
-    Individu* indiv1 = malloc(sizeof(Individu*));
-    Population* Pop = creerPopulation(TAILLEPOP);
+    ElemIndiv* elem = malloc(sizeof(ElemIndiv*));
 
+    Population* Pop = creerPopulation(TAILLEPOP);
+    Pop = initPopulation(Pop, TAILLEPOP);
 
     afficherPopulation(Pop);
+    printf("quicksort: \n");
+    Pop = quicksort(Pop, Pop->head, Pop->tail);
+    afficherPopulation(Pop);
+    elem = Pop->head;
 
-    for(int i = 0; i < 10; i++)
+
+    for(int i = 0; i<5; i++)
     {
-        indiv1 = creerIndiv(LONGINDIV);
-        indiv1 = initialisation(indiv1);
-        Pop = ajouterTPopulation(Pop, indiv1);
-        afficherPopulation(Pop);
+        printf("element %d, qualite : %f\n", i+1, qualiteIndivf1(decodage(elem->value)));
+        elem = elem->next;
     }
 
     return 0;
