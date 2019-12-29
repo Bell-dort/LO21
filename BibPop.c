@@ -8,9 +8,9 @@
 
 Population* creerPopulation(void)
 {
-    Population* Pop = malloc(sizeof(Population));     //on déclare la structure
+    Population* Pop = malloc(sizeof(Population));     //on dÃ©clare la structure
 
-    if (Pop != NULL)            //on verifie que ça a marché
+    if (Pop != NULL)            //on verifie que Ã§a a marchÃ©
     {
         Pop->taillePop = 0;     //on remplie la structure
         Pop->head = NULL;
@@ -22,13 +22,13 @@ Population* creerPopulation(void)
 
 Population* ajouterTPopulation(Population* Pop, Individu* Indiv)
 {
-    ElemIndiv* nvElem = malloc(sizeof(ElemIndiv)); //allocation de la mémoire
+    ElemIndiv* nvElem = malloc(sizeof(ElemIndiv)); //allocation de la mÃ©moire
 
-    nvElem->value = Indiv;
+    nvElem->value = Indiv;              //on remplie le nouvel element
     nvElem->next = Pop->head;
     nvElem->precedent = NULL;
 
-    if(Pop->head != NULL)
+    if(Pop->head != NULL)               //on verifie si la liste est vide
     {
         Pop->head->precedent = nvElem;
     }
@@ -38,24 +38,21 @@ Population* ajouterTPopulation(Population* Pop, Individu* Indiv)
     }
 
 
-    Pop->head = nvElem;
-    Pop->taillePop++;
-
+    Pop->head = nvElem;     //on repositionne la tete sur le nouvel element
+    Pop->taillePop++;      
 
     return Pop;
 }
 
 Population* ajouterQPopulation(Population* Pop, Individu* Indiv)
 {
-    ElemIndiv* nvElem = malloc(sizeof(ElemIndiv)); //allocation de la mémoire
-
-    printf("l'indiv ? : ");
-
-    nvElem->value = Indiv;
+    ElemIndiv* nvElem = malloc(sizeof(ElemIndiv)); //allocation de la mÃ©moire
+    
+    nvElem->value = Indiv;          //on remplie le nouvel element
     nvElem->next = NULL;
     nvElem->precedent = Pop->tail;
 
-    if(Pop->head != NULL)
+    if(Pop->head != NULL)           //on verifie si la liste est vide
     {
         Pop->tail->next = nvElem;
     }
@@ -64,19 +61,17 @@ Population* ajouterQPopulation(Population* Pop, Individu* Indiv)
         Pop->head = nvElem;
     }
 
-    Pop->tail = nvElem;
-
+    Pop->tail = nvElem;     //on repositionne la queue sur le nouvel element
     Pop->taillePop++;
-    afficher_individu(Pop->tail->value);
 
     return Pop;
 }
 
 Population* supprimerQPopulation(Population* Pop)
 {
-    Pop->tail = Pop->tail->precedent;
-    free(Pop->tail->next);
-    Pop->tail->next = NULL;
+    Pop->tail = Pop->tail->precedent;          //on recule la queue d'un element
+    free(Pop->tail->next);                     //on libÃ¨re la mÃ©moire de l'ancienne queue
+    Pop->tail->next = NULL;                  
 
     Pop->taillePop--;
 
@@ -87,12 +82,12 @@ Population* supprimerQPopulation(Population* Pop)
 
 Population* initPopulation(Population* pop , int taillePop)
 {
-    int i;                                              //on declare les variables utilisées ensuite
+    int i;                                              //on declare les variables utilisÃ©es ensuite
     Individu* nvIndiv = malloc(sizeof(Individu));
 
-    for(i = 0; i < taillePop; i++)                  //on ajoute un individu jusquà ce que population soit de la bonne taille
+    for(i = 0; i < taillePop; i++)                  //on ajoute un individu jusquÃ  ce que population soit de la bonne taille
     {
-        nvIndiv = creerIndiv(LONGINDIV);            //on créé et initialise un individu à ajouter
+        nvIndiv = creerIndiv(LONGINDIV);            //on crÃ©Ã© et initialise un individu Ã  ajouter
         nvIndiv = initialisation(nvIndiv);
         pop = ajouterTPopulation(pop, nvIndiv);
     }
@@ -103,7 +98,7 @@ Population* initPopulation(Population* pop , int taillePop)
 
 void afficherPopulation(Population* Pop)
 {
-    ElemIndiv* ElemInd = malloc(sizeof(ElemIndiv)); //on créé un element qui va parcourir la liste
+    ElemIndiv* ElemInd = malloc(sizeof(ElemIndiv)); //on crÃ©Ã© un element qui va parcourir la liste
 
     if(Pop != NULL)
     {
@@ -121,42 +116,42 @@ void afficherPopulation(Population* Pop)
 Population* quicksort(Population* Pop, ElemIndiv* debut, ElemIndiv* fin)
 {
 
-    float pivot, qGauche, qDroite;                          //initialisation des variables utilisées plus tard
+    float pivot, qGauche, qDroite;                          //initialisation des variables utilisÃ©es plus tard
     ElemIndiv* gauche = malloc(sizeof(ElemIndiv));
     ElemIndiv* droite = malloc(sizeof(ElemIndiv));
     Individu* temp = malloc(sizeof(ElemIndiv));
 
-    if(debut != fin)                                            //si la portion de liste étudiée ne comprends pas qu'un élément alors on la trie
+    if(debut != fin)                                            //si la portion de liste Ã©tudiÃ©e ne comprends pas qu'un Ã©lÃ©ment alors on la trie
     {
-        pivot = qualiteIndivf1(decodage(debut->value));         //on choisit le premier élement comme pivot et on positionne droite et gauche à chaque extremité
+        pivot = qualiteIndivf1(decodage(debut->value));         //on choisit le premier Ã©lement comme pivot et on positionne droite et gauche Ã  chaque extremitÃ©
         gauche = debut;
         droite = fin;
 
         while(droite != gauche)
         {
-            qGauche = qualiteIndivf1(decodage(gauche->value));          //on affecte les qualité correspondante à qGauvhe et qDroite pour effectuer les comparaisons
+            qGauche = qualiteIndivf1(decodage(gauche->value));          //on affecte les qualitÃ© correspondante Ã  qGauvhe et qDroite pour effectuer les comparaisons
             qDroite = qualiteIndivf1(decodage(droite->value));
 
-            while(qDroite < pivot)                                  //on positionne droite sur le premier individu dont la qualité est superieure au pivot
+            while(qDroite < pivot)                                  //on positionne droite sur le premier individu dont la qualitÃ© est superieure au pivot
             {
                 droite = droite->precedent;
                 qDroite = qualiteIndivf1(decodage(droite->value));
             }
 
-            while(qGauche > pivot)                              //on positionne gauche sur le premier individu dont la qualité est inferieure au pivot
+            while(qGauche > pivot)                              //on positionne gauche sur le premier individu dont la qualitÃ© est inferieure au pivot
             {
                 gauche = gauche->next;
                 qGauche = qualiteIndivf1(decodage(gauche->value));
             }
 
-            if(qGauche == qDroite && droite != gauche)          //on verifie que les deux individus comparés ne sont pas identiques
+            if(qGauche == qDroite && droite != gauche)          //on verifie que les deux individus comparÃ©s ne sont pas identiques
             {
                 gauche = gauche->next;
                 qGauche = qualiteIndivf1(decodage(gauche->value));
             }
             else
             {
-                if(qGauche < qDroite)           //si ils ne le sont pas et que qDroite est superieur à qGauche alors on echange les valeurs de droite et gauche
+                if(qGauche < qDroite)           //si ils ne le sont pas et que qDroite est superieur Ã  qGauche alors on echange les valeurs de droite et gauche
                 {
                     temp = gauche->value;
                     gauche->value = droite->value;
@@ -165,31 +160,31 @@ Population* quicksort(Population* Pop, ElemIndiv* debut, ElemIndiv* fin)
             }
         }
 
-        if(gauche != debut)                                     //si la partie de la liste à gauche du pivot ne contient pas qu'un élément
+        if(gauche != debut)                                     //si la partie de la liste Ã  gauche du pivot ne contient pas qu'un Ã©lÃ©ment
         {
             Pop = quicksort(Pop, debut, gauche->precedent);     //on trie la gauche du pivot
         }
-        if(droite != fin)                                       //si la partie de la liste à droite du pivot ne contient pas qu'un élément
+        if(droite != fin)                                       //si la partie de la liste Ã  droite du pivot ne contient pas qu'un Ã©lÃ©ment
         {
             Pop = quicksort(Pop, droite->next, fin);            //on trie la droite du pivot
         }
     }
-    return Pop;     //on renvoie la population tiée
+    return Pop;     //on renvoie la population tiÃ©e
 }
 
 Population* SelectPop(Population* Pop, int tSelect)
 {
-    ElemIndiv* ElemCopy = malloc(sizeof(ElemIndiv));
+    ElemIndiv* ElemCopy = malloc(sizeof(ElemIndiv));    //on dÃ©clare un element de copie
     int i;
 
     ElemCopy = Pop->head;
 
-    for(i = 0; i < TAILLEPOP - tSelect; i++)
+    for(i = 0; i < TAILLEPOP - tSelect; i++)    //on tronque la liste pour quelle soit de taille tSelect
     {
         Pop = supprimerQPopulation(Pop);
     }
 
-    for(i = 0; i < TAILLEPOP - tSelect; i++)
+    for(i = 0; i < TAILLEPOP - tSelect; i++)        //On remplie la liste en copiant les premier elements
     {
         Pop = ajouterQPopulation(Pop, ElemCopy->value);
         ElemCopy = ElemCopy->next;
