@@ -12,7 +12,7 @@ void p_croise(Individu* l1, Individu* l2)       //croise 2 individus entre eux e
     ElemBit* p = l1->head;
     ElemBit* m = l2->head;
 
-    ElemBit* temp = malloc(sizeof(ElemBit*));
+    ElemBit* temp = malloc(sizeof(ElemBit));
 
     pt = PCROISE * 100;                         //met la probabilité PCROISE sous forme de pourcentage
 
@@ -20,7 +20,7 @@ void p_croise(Individu* l1, Individu* l2)       //croise 2 individus entre eux e
     {
         proba = rand()%pt;
 
-        if(proba<(pt/2))                        
+        if(proba<(pt/2))
         {
             temp->value = p->value;
             p->value = m->value;
@@ -37,7 +37,7 @@ void p_croise(Individu* l1, Individu* l2)       //croise 2 individus entre eux e
 
 Individu* creerIndiv(int longIndiv)			//Creer un individu
 {
-	Individu* indiv = malloc(sizeof(Individu*));	//Alloue de la mémoire
+	Individu* indiv = malloc(sizeof(Individu));	//Alloue de la mémoire
 	indiv->head = NULL;
 	indiv->longIndiv = LONGINDIV;
 	return indiv;
@@ -57,7 +57,7 @@ Individu* initialisation_recur(Individu* indiv, int longlist) //Initialisation d
 {
     if(longlist>0)                                  //condition d'arrêt : si on arrive à la fin de la liste, on arrête d'ajouter des élements
     {
-        ElemBit* p = malloc(sizeof(ElemBit*));
+        ElemBit* p = malloc(sizeof(ElemBit));
         p = indiv->head;
 
         longlist = longlist - 1;
@@ -75,7 +75,7 @@ int est_vide(Individu* l)                       //vérifie si une liste donnée 
 
 Individu* ajouter_head(Individu* l,Bit a)       //ajoute une valeur a en tete de liste
 {
-	ElemBit *e = malloc(sizeof(ElemBit*));
+	ElemBit *e = malloc(sizeof(ElemBit));
 	e->value = a;
 	e->next = l->head;
 	l->head = e;
@@ -84,9 +84,9 @@ Individu* ajouter_head(Individu* l,Bit a)       //ajoute une valeur a en tete de
 
 Individu* ajouter_queue(Individu* l,Bit a)      //ajoute une valeur a en fin de liste
 {
-    ElemBit* p = malloc(sizeof(ElemBit*));
+    ElemBit* p = malloc(sizeof(ElemBit));
 
-    ElemBit* newel = malloc(sizeof(ElemBit*));
+    ElemBit* newel = malloc(sizeof(ElemBit));
 
     newel->value = a;
     newel->next= NULL;
@@ -111,7 +111,7 @@ Individu* ajouter_queue(Individu* l,Bit a)      //ajoute une valeur a en fin de 
 void afficher_individu(Individu* l)         //affiche un individu
 {
     int i;
-    ElemBit* temp = malloc(sizeof(ElemBit*));
+    ElemBit* temp = malloc(sizeof(ElemBit));
 
 	if (!est_vide(l))
 	{
@@ -145,20 +145,20 @@ int decodage(Individu* l)               //lit la liste de Bits d'un individu et 
 	return valIndiv;
 }
 
-float qualiteIndivf1(int valIndiv, Individu* l)     /*première version de la fonction qui calcule la qualité d'un individu à partir de sa valeur,
-                                                     obtenue par la fonction "decodage"*/
+float qualiteIndivf1(int valIndiv)     /*première version de la fonction qui calcule la qualité d'un individu à partir de sa valeur,
+                                                obtenue par la fonction "decodage"*/
 {
     int longIndiv = 8;
     int A = -1,B = 1;
-	float resultat,X;
+	double resultat,X;
 
 	X = (valIndiv / powf(2,longIndiv)) * (B - A) + A;
 	resultat = - powf(X,2);
-
 	return resultat;
 }
 
-float qualiteIndivf2(int valIndiv, Individu* l)     /*deuxieme version de la fonction qui calcule la qualité d'un individu à partir de sa valeur,
+
+float qualiteIndivf2(int valIndiv)     /*deuxieme version de la fonction qui calcule la qualité d'un individu à partir de sa valeur,
                                                      obtenue par la fonction "decodage"*/
 {
     int longIndiv = 16;
@@ -171,7 +171,7 @@ float qualiteIndivf2(int valIndiv, Individu* l)     /*deuxieme version de la fon
 	return resultat;
 }
 
-float qualiteIndivf3(int valIndiv, Individu* l)     /*troisième version de la fonction qui calcule la qualité d'un individu à partir de sa valeur,
+float qualiteIndivf3(int valIndiv)     /*troisième version de la fonction qui calcule la qualité d'un individu à partir de sa valeur,
                                                      obtenue par la fonction "decodage"*/
 {
     int longIndiv = 32;

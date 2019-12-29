@@ -20,9 +20,9 @@ void afficher_individu(Individu*); // Permet d'afficher la liste de bits
 
 void trouver_elem(Individu*,int);
 int decodage(Individu*);
-float qualiteIndivf1(int, Individu*);
-float qualiteIndivf2(int, Individu*);
-float qualiteIndivf3(int, Individu*);
+float qualiteIndivf1(int);
+float qualiteIndivf2(int);
+float qualiteIndivf3(int);
 void p_croise(Individu*, Individu*);
 
 void croiserIndiv(Individu*, Individu*, double);
