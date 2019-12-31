@@ -5,10 +5,11 @@
 #include <math.h>
 #include "BibGeneral.h"
 
-void p_croise(Individu* l1, Individu* l2)       //croise 2 individus entre eux en invertissant leurs Bits
+void croiser_indiv(Individu* l1, Individu* l2)       //croise 2 individus entre eux en invertissant leurs Bits
 {
     int pt, proba;
-    double probaR,k=0;
+    double k = 0;
+    //double probaR;
     ElemBit* p = l1->head;
     ElemBit* m = l2->head;
 
@@ -30,94 +31,98 @@ void p_croise(Individu* l1, Individu* l2)       //croise 2 individus entre eux e
         p = p->next;
         m = m->next;
     }
-    probaR = (k/LONGINDIV);
-    printf(" Probabilite theorique : %d %%\n Probabilite observee : %.2lf %% \n",pt,probaR*100);
+    //probaR = (k/LONGINDIV);
+    //printf(" Probabilite theorique : %d %%\n Probabilite observee : %.2lf %% \n",pt,probaR*100);
 
 }
 
-Individu* creerIndiv(int longIndiv)			//Creer un individu
+Individu* creer_indiv(void)			//Creer un individu
 {
 	Individu* indiv = malloc(sizeof(Individu));	//Alloue de la mémoire
 	indiv->head = NULL;
-	indiv->longIndiv = LONGINDIV;
+	indiv->longIndiv = 0;
 	return indiv;
 }
 
-Individu* initialisation(Individu* indiv) //Initialisation de la liste de Bit d'un individu
+Individu* init_indiv(Individu* indiv, int longindiv) //Initialisation de la liste de Bit d'un individu
 {
     int i;
-	for(i = 0; i < indiv->longIndiv; i++)	//Remplissage de la liste de Bit avec 0 ou 1 au hasard
+	for(i = 0; i < longindiv; i++)	//Remplissage de la liste de Bit avec 0 ou 1 au hasard
 	{
-		indiv = ajouter_head(indiv,rand()%2);
+		indiv = ajouterT_indiv(indiv, rand()%2);
 	}
 	return indiv;
 }
 
 Individu* initialisation_recur(Individu* indiv, int longlist) //Initialisation de la liste de Bit d'un individu (RECURSIF)
 {
-    if(longlist>0)                                  //condition d'arrêt : si on arrive à la fin de la liste, on arrête d'ajouter des élements
+    if(longlist > 0)                                  //condition d'arrêt : si on arrive à la fin de la liste, on arrête d'ajouter des élements
     {
-        ElemBit* p = malloc(sizeof(ElemBit));
-        p = indiv->head;
+        ElemBit* elemParc = malloc(sizeof(ElemBit));
+        elemParc = indiv->head;
 
         longlist = longlist - 1;
-        indiv = ajouter_head(indiv,rand()%2);
-        p = p->next;
+        indiv = ajouterT_indiv(indiv,rand()%2);
+        elemParc = elemParc->next;
         initialisation_recur(indiv,longlist);
     }
     return indiv;
 }
 
-int est_vide(Individu* l)                       //vérifie si une liste donnée l est vide ou non
+int est_vide(Individu* indiv)                       //vérifie si une liste donnée l est vide ou non
 {
-	return (l == NULL);
+	return (indiv->head == NULL);
 }
 
-Individu* ajouter_head(Individu* l,Bit a)       //ajoute une valeur a en tete de liste
+Individu* ajouterT_indiv(Individu* indiv, Bit bit)       //ajoute une valeur a en tete de liste
 {
-	ElemBit *e = malloc(sizeof(ElemBit));
-	e->value = a;
-	e->next = l->head;
-	l->head = e;
-	return l;
+	ElemBit* nvElem = malloc(sizeof(ElemBit));
+	nvElem->value = bit;
+	nvElem->next = indiv->head;
+	indiv->head = nvElem;
+
+	indiv->longIndiv++;
+	return indiv;
 }
 
-Individu* ajouter_queue(Individu* l,Bit a)      //ajoute une valeur a en fin de liste
+Individu* ajouterQ_indiv(Individu* indiv,Bit bit)      //ajoute une valeur a en fin de liste
 {
-    ElemBit* p = malloc(sizeof(ElemBit));
+    ElemBit* elemParc = malloc(sizeof(ElemBit));
 
-    ElemBit* newel = malloc(sizeof(ElemBit));
+    ElemBit* nvElem = malloc(sizeof(ElemBit));
 
-    newel->value = a;
-    newel->next= NULL;
+    nvElem->value = bit;
+    nvElem->next= NULL;
 
-    if(est_vide(l))
+    if(est_vide(indiv))
     {
-        l->head = newel;
+        indiv->head = nvElem;
     }
     else
     {
-        p = l->head;
-        while(p->next != NULL)
+        elemParc = indiv->head;
+        while(elemParc->next != NULL)
         {
-            p=p->next;
+            elemParc = elemParc->next;
         }
-        p->next = newel;
+        elemParc->next = nvElem;
     }
-    return l;
+
+    indiv->longIndiv++;
+    return indiv;
 }
 
 
-void afficher_individu(Individu* l)         //affiche un individu
+void afficher_indiv(Individu* indiv)         //affiche un individu
 {
     int i;
     ElemBit* temp = malloc(sizeof(ElemBit));
 
-	if (!est_vide(l))
+	if (!est_vide(indiv))
 	{
-		temp = l->head;
+		temp = indiv->head;
 		printf("[");
-		for (i = 0; i < l->longIndiv; i++)  //affiche 1 par 1 les éléments de la liste
+		for (i = 0; i < indiv->longIndiv; i++)  //affiche 1 par 1 les éléments de la liste
 		{
 			printf(" %d ",temp->value);
 			temp = temp->next;
@@ -131,10 +136,10 @@ void afficher_individu(Individu* l)         //affiche un individu
 	printf("\n\n");
 }
 
-int decodage(Individu* l)               //lit la liste de Bits d'un individu et en calcule sa valeur
+int decodage_indiv(Individu* indiv)               //lit la liste de Bits d'un individu et en calcule sa valeur
 {
-	int valIndiv=0,i=LONGINDIV - 1;
-	ElemBit* temp = l->head;
+	int valIndiv = 0, i = LONGINDIV - 1;
+	ElemBit* temp = indiv->head;
 
 	while(temp->next != NULL)
     {
@@ -184,4 +189,17 @@ float qualiteIndivf3(int valIndiv)     /*troisième version de la fonction qui c
 	return resultat;
 }
 
+Individu* copyIndividu(Individu* indiv1)    //Copie un individu
+{
+    Individu* indiv2 = creer_indiv();    //declaration des variables
+    ElemBit* elemParc = indiv1->head;
+    int i;
 
+    for(i = 0; i < LONGINDIV; i++)  //on ajoute dans indiv2 chaque bit de indiv1
+    {
+        indiv2 = ajouterQ_indiv(indiv2, elemParc->value);
+        elemParc = elemParc->next;
+    }
+
+    return indiv2;
+}
