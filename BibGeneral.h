@@ -10,7 +10,7 @@
 // Taille de la population:
 #define TAILLEPOP 5
 // Taux de sélection:
-#define TSELECT 0.5
+#define TSELECT
 // Nombre de générations:
 #define NGEN 20
 //victor c'est un connard un fdp
