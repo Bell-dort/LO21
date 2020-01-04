@@ -5,7 +5,6 @@
 #include "BibPop.h"
 #include <time.h>
 #include <math.h>
-
 Population* creer_pop(void)
 {
     Population* Pop = malloc(sizeof(Population));     //on déclare la structure
@@ -226,7 +225,7 @@ Population* croiser_pop(Population* P1)
                 elemCroise = elemCroise->next;
             }
 
-            indiv1 = copyIndividu(elemCroise->value);       //on copie la valeur du premier element pour ne pas modifier P1
+            indiv1 = copy_indiv(elemCroise->value);       //on copie la valeur du premier element pour ne pas modifier P1
 
             do
             {
@@ -239,7 +238,7 @@ Population* croiser_pop(Population* P1)
                 elemCroise = elemCroise->next;
             }
 
-            indiv2 = copyIndividu(elemCroise->next->value); //pareillement avec le deuxieme element
+            indiv2 = copy_indiv(elemCroise->next->value); //pareillement avec le deuxieme element
 
             croiser_indiv(indiv1, indiv2);       //on les croise
 
@@ -257,7 +256,7 @@ Population* croiser_pop(Population* P1)
                 elemCroise = elemCroise->next;
             }
 
-            indiv1 = copyIndividu(elemCroise->value);       //on copie la valeur du premier element pour ne pas modifier P1
+            indiv1 = copy_indiv(elemCroise->value);       //on copie la valeur du premier element pour ne pas modifier P1
 
             do
             {
@@ -270,7 +269,7 @@ Population* croiser_pop(Population* P1)
                 elemCroise = elemCroise->next;
             }
 
-            indiv2 = copyIndividu(elemCroise->next->value); //pareillement avec le deuxieme element
+            indiv2 = copy_indiv(elemCroise->next->value); //pareillement avec le deuxieme element
 
             croiser_indiv(indiv1, indiv2);       //on les croise
 

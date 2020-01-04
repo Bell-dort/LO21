@@ -189,7 +189,7 @@ float qualiteIndivf3(int valIndiv)     /*troisième version de la fonction qui c
 	return resultat;
 }
 
-Individu* copyIndividu(Individu* indiv1)    //Copie un individu
+Individu* copy_indiv(Individu* indiv1)    //Copie un individu
 {
     Individu* indiv2 = creer_indiv();    //declaration des variables
     ElemBit* elemParc = indiv1->head;
