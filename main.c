@@ -9,28 +9,22 @@ int main()
 {
     srand(time(NULL));
 
-    Individu* indiv = malloc(sizeof(Individu));
+    Population* Pop = init_pop(creer_pop(), TAILLEPOP);
+    int i;
 
-    Population* Pop = creerPopulation();
-    printf("oui\n");
-    Pop = initPopulation(Pop, TAILLEPOP);
-    afficherPopulation(Pop);
+    printf("pop : \n");
+    afficher_pop(Pop);
 
+    for(i = 0; i < NGEN; i++)
+    {
 
+        Pop = trier_pop(Pop, Pop->head, Pop->tail);
+        Pop = select_pop(Pop);
+        Pop = croiser_pop(Pop);
+    }
+    printf("pop opti :\n");
+    afficher_pop(Pop);
 
-    Pop = quicksort(Pop, Pop->head, Pop->tail);
-    printf("quicksort :\n");
-    afficherPopulation(Pop);
-
-    printf("selection : \n");
-
-    Pop = SelectPop(Pop, 3);
-
-    indiv = Pop->head->value;
-
-
-
-    afficherPopulation(Pop);
 
     return 0;
 }

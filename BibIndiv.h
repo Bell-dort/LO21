@@ -3,28 +3,24 @@
 #include "BibGeneral.h"
 
 // Fonction pour les listes de bits :
-Individu* creerIndiv(int);// Creer une liste de bits
 
-void ajouterTIndividu(Individu*, Bit); // Ajouter un bit à la liste de bits
-Individu* ajouter_head(Individu*,Bit);
-Individu* ajouter_queue(Individu*,Bit);
-Individu* suppr_head(Individu*);
-Individu* suppr_queue(Individu*);
-
-Individu* initialisation(Individu*);; //initialiser la liste de bits
-Individu* initialisation_recur(Individu*, int);
-int est_vide(Individu*); // Verifie si la liste de bits est vide. Renvoie 1 si oui, 0 si non
-
-void afficher_individu(Individu*); // Permet d'afficher la liste de bits
+Individu* creer_indiv(void);// Creer une liste de bits
 
 
-void trouver_elem(Individu*,int);
-int decodage(Individu*);
-float qualiteIndivf1(int);
-float qualiteIndivf2(int);
-float qualiteIndivf3(int);
-void p_croise(Individu*, Individu*);
+Individu* ajouterT_indiv(Individu*,Bit); // Ajouter un bit à la liste de bits en tete
+Individu* ajouterQ_indiv(Individu*,Bit); // Ajouter un bit à la liste de bits en queue
+Individu* copy_indiv(Individu*);  //Copie un individu
 
-void croiserIndiv(Individu*, Individu*, double);
+
+Individu* init_indiv(Individu*, int);; //initialiser la liste de bits
+Individu* initRecur_indiv(Individu*, int); //version recursive de la fonction précedente
+int vide_indiv(Individu*); // Verifie si la liste de bits est vide. Renvoie 1 si oui, 0 si non
+void afficher_indiv(Individu*); // Permet d'afficher la liste de bits
+
+int decodage_indiv(Individu*);    //décode la liste de bit en un nombre entier
+float qualiteIndivf1(int);  //calcule la qualtité d'un individu avec la fonction f1 en fonction de son décodage
+float qualiteIndivf2(int);  //calcule la qualtité d'un individu avec la fonction f2 en fonction de son décodage
+float qualiteIndivf3(int);  //calcule la qualtité d'un individu avec la fonction f3 en fonction de son décodage
+void croiser_indiv(Individu*, Individu*);  //croise deux individus entres eux
 
 #endif // BIBPOP_H_INCLUDED

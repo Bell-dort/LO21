@@ -3,27 +3,22 @@
 // On place ici des constantes du préprocesseur
 // pour faciliter le changement des paramètres du projet
 
-// Longueur d'un individu:
-#define LONGINDIV 8
-// Probabilité de croisement:
-#define PCROISE 0.5
-// Taille de la population:
-#define TAILLEPOP 5
-// Taux de sélection:
-#define TSELECT
-// Nombre de générations:
-#define NGEN 20
-//victor c'est un connard un fdp
+#define LONGINDIV 8  // Longueur d'un individu:
+#define PCROISE 0.5  // Probabilité de croisement:
+#define TAILLEPOP 5  // Taille de la population:
+#define TSELECT 4  // Taux de sélection:
+#define NGEN 20  // Nombre de générations:
+
 #include <stdio.h>
 #include <stdlib.h>
 
 typedef unsigned char Bit; // définition d'un bit compris entre 0 et 1
 
-typedef struct Elem
+typedef struct Elemb
 {
 	Bit value;
-	struct Elem* next;
-} ElemBit; // Element de la liste de bits (= un bit)
+	struct Elemb* next;
+} ElemBit; // Element de la liste de bits
 
 typedef struct ListeBit
 {
@@ -31,21 +26,18 @@ typedef struct ListeBit
 	int longIndiv; // Taille de la liste de bits
 } Individu; // La liste de bits
 
-//typedef ListeBit* Individu; // Un individu est une liste de bits
-
-
-typedef struct Elem2
+typedef struct Elemi
 {
     Individu* value;
-	struct Elem2* precedent;
-	struct Elem2* next;
+	struct Elemi* precedent;
+	struct Elemi* next;
 }ElemIndiv; // Element de la liste d'individu
 
 typedef struct ListeIndiv
 {
 	ElemIndiv* head;
 	ElemIndiv* tail;
-	int taillePop; // Taille de la liste de bits
+	int taillePop; // Taille de la liste d'indiv
 }Population;  // Une population est une liste d'individu
 
 #endif // BIBGENERAL_H_INCLUDED

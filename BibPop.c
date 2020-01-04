@@ -6,7 +6,7 @@
 #include <time.h>
 #include <math.h>
 
-Population* creerPopulation(void)
+Population* creer_pop(void)
 {
     Population* Pop = malloc(sizeof(Population));     //on déclare la structure
 
@@ -20,7 +20,12 @@ Population* creerPopulation(void)
     return Pop;
 }
 
-Population* ajouterTPopulation(Population* Pop, Individu* Indiv)
+int vide_pop(Population* Pop)
+{
+    return(Pop->head == NULL);
+}
+
+Population* ajouterT_pop(Population* Pop, Individu* Indiv)
 {
     ElemIndiv* nvElem = malloc(sizeof(ElemIndiv)); //allocation de la mémoire
 
@@ -28,37 +33,37 @@ Population* ajouterTPopulation(Population* Pop, Individu* Indiv)
     nvElem->next = Pop->head;
     nvElem->precedent = NULL;
 
-    if(Pop->head != NULL)               //on verifie si la liste est vide
+    if(vide_pop(Pop))               //on verifie si la liste est vide
     {
-        Pop->head->precedent = nvElem;
+        Pop->tail = nvElem;
     }
     else
     {
-        Pop->tail = nvElem;
+        Pop->head->precedent = nvElem;
     }
 
 
     Pop->head = nvElem;     //on repositionne la tete sur le nouvel element
-    Pop->taillePop++;      
+    Pop->taillePop++;
 
     return Pop;
 }
 
-Population* ajouterQPopulation(Population* Pop, Individu* Indiv)
+Population* ajouterQ_pop(Population* Pop, Individu* Indiv)
 {
     ElemIndiv* nvElem = malloc(sizeof(ElemIndiv)); //allocation de la mémoire
-    
+
     nvElem->value = Indiv;          //on remplie le nouvel element
     nvElem->next = NULL;
     nvElem->precedent = Pop->tail;
 
-    if(Pop->head != NULL)           //on verifie si la liste est vide
+    if(vide_pop(Pop))           //on verifie si la liste est vide
     {
-        Pop->tail->next = nvElem;
+        Pop->head = nvElem;
     }
     else
     {
-        Pop->head = nvElem;
+        Pop->tail->next = nvElem;
     }
 
     Pop->tail = nvElem;     //on repositionne la queue sur le nouvel element
@@ -67,132 +72,187 @@ Population* ajouterQPopulation(Population* Pop, Individu* Indiv)
     return Pop;
 }
 
-Population* supprimerQPopulation(Population* Pop)
+Population* supprimerQ_pop(Population* Pop)
 {
-    Pop->tail = Pop->tail->precedent;          //on recule la queue d'un element
-    free(Pop->tail->next);                     //on libère la mémoire de l'ancienne queue
-    Pop->tail->next = NULL;                  
+    if(!vide_pop(Pop))
+    {
+        Pop->tail = Pop->tail->precedent;          //on recule la queue d'un element
+        free(Pop->tail->next);                     //on libère la mémoire de l'ancienne queue
+        Pop->tail->next = NULL;
 
-    Pop->taillePop--;
+        Pop->taillePop--;
+    }
 
     return Pop;
 }
 
 
-
-Population* initPopulation(Population* pop , int taillePop)
+Population* init_pop(Population* pop , int taillePop)
 {
     int i;                                              //on declare les variables utilisées ensuite
     Individu* nvIndiv = malloc(sizeof(Individu));
 
     for(i = 0; i < taillePop; i++)                  //on ajoute un individu jusquà ce que population soit de la bonne taille
     {
-        nvIndiv = creerIndiv(LONGINDIV);            //on créé et initialise un individu à ajouter
-        nvIndiv = initialisation(nvIndiv);
-        pop = ajouterTPopulation(pop, nvIndiv);
+        nvIndiv = creer_indiv();            //on créé et initialise un individu à ajouter
+        nvIndiv = init_indiv(nvIndiv, LONGINDIV);
+        pop = ajouterT_pop(pop, nvIndiv);
     }
 
     return pop;
 }
 
 
-void afficherPopulation(Population* Pop)
+void afficher_pop(Population* Pop)
 {
     ElemIndiv* ElemInd = malloc(sizeof(ElemIndiv)); //on créé un element qui va parcourir la liste
 
-    if(Pop != NULL)
+    if(!vide_pop(Pop))
     {
         ElemInd = Pop->head;
-        printf("taille : %d\n", Pop->taillePop);
+        //printf("taille : %d\n", Pop->taillePop);
         for(int i = 0; i < Pop->taillePop; i++) //On affiche les individus
         {
-            afficher_individu(ElemInd->value);
+            afficher_indiv(ElemInd->value);
             ElemInd = ElemInd->next;
         }
     }
 }
 
 
-Population* quicksort(Population* Pop, ElemIndiv* debut, ElemIndiv* fin)
+Population* trier_pop(Population* Pop, ElemIndiv* debut, ElemIndiv* fin)
 {
 
-    float pivot, qGauche, qDroite;                          //initialisation des variables utilisées plus tard
+    float pivot, qGauche, qDroite;                     //initialisation des variables utilisées plus tard
     ElemIndiv* gauche = malloc(sizeof(ElemIndiv));
     ElemIndiv* droite = malloc(sizeof(ElemIndiv));
     Individu* temp = malloc(sizeof(ElemIndiv));
-
-    if(debut != fin)                                            //si la portion de liste étudiée ne comprends pas qu'un élément alors on la trie
+    if(!vide_pop(Pop))
     {
-        pivot = qualiteIndivf1(decodage(debut->value));         //on choisit le premier élement comme pivot et on positionne droite et gauche à chaque extremité
-        gauche = debut;
-        droite = fin;
-
-        while(droite != gauche)
+        if(debut != fin)                                            //si la portion de liste étudiée ne comprends pas qu'un élément alors on la trie
         {
-            qGauche = qualiteIndivf1(decodage(gauche->value));          //on affecte les qualité correspondante à qGauvhe et qDroite pour effectuer les comparaisons
-            qDroite = qualiteIndivf1(decodage(droite->value));
+            pivot = qualiteIndivf1(decodage_indiv(debut->value));         //on choisit le premier élement comme pivot et on positionne droite et gauche à chaque extremité
+            gauche = debut;
+            droite = fin;
 
-            while(qDroite < pivot)                                  //on positionne droite sur le premier individu dont la qualité est superieure au pivot
+            while(droite != gauche)
             {
-                droite = droite->precedent;
-                qDroite = qualiteIndivf1(decodage(droite->value));
-            }
+                qGauche = qualiteIndivf1(decodage_indiv(gauche->value));          //on affecte les qualité correspondante à qGauvhe et qDroite pour effectuer les comparaisons
+                qDroite = qualiteIndivf1(decodage_indiv(droite->value));
 
-            while(qGauche > pivot)                              //on positionne gauche sur le premier individu dont la qualité est inferieure au pivot
-            {
-                gauche = gauche->next;
-                qGauche = qualiteIndivf1(decodage(gauche->value));
-            }
-
-            if(qGauche == qDroite && droite != gauche)          //on verifie que les deux individus comparés ne sont pas identiques
-            {
-                gauche = gauche->next;
-                qGauche = qualiteIndivf1(decodage(gauche->value));
-            }
-            else
-            {
-                if(qGauche < qDroite)           //si ils ne le sont pas et que qDroite est superieur à qGauche alors on echange les valeurs de droite et gauche
+                while(qDroite < pivot)                                  //on positionne droite sur le premier individu dont la qualité est superieure au pivot
                 {
-                    temp = gauche->value;
-                    gauche->value = droite->value;
-                    droite->value = temp;
+                    droite = droite->precedent;
+                    qDroite = qualiteIndivf1(decodage_indiv(droite->value));
+                }
+
+                while(qGauche > pivot)                              //on positionne gauche sur le premier individu dont la qualité est inferieure au pivot
+                {
+                    gauche = gauche->next;
+                    qGauche = qualiteIndivf1(decodage_indiv(gauche->value));
+                }
+
+                if(qGauche == qDroite && droite != gauche)          //on verifie que les deux individus comparés ne sont pas identiques
+                {
+                    gauche = gauche->next;
+                    qGauche = qualiteIndivf1(decodage_indiv(gauche->value));
+                }
+                else
+                {
+                    if(qGauche < qDroite)           //si ils ne le sont pas et que qDroite est superieur à qGauche alors on echange les valeurs de droite et gauche
+                    {
+                        temp = gauche->value;
+                        gauche->value = droite->value;
+                        droite->value = temp;
+                    }
                 }
             }
-        }
 
-        if(gauche != debut)                                     //si la partie de la liste à gauche du pivot ne contient pas qu'un élément
-        {
-            Pop = quicksort(Pop, debut, gauche->precedent);     //on trie la gauche du pivot
-        }
-        if(droite != fin)                                       //si la partie de la liste à droite du pivot ne contient pas qu'un élément
-        {
-            Pop = quicksort(Pop, droite->next, fin);            //on trie la droite du pivot
+            if(gauche != debut)                                     //si la partie de la liste à gauche du pivot ne contient pas qu'un élément
+            {
+                Pop = trier_pop(Pop, debut, gauche->precedent);     //on trie la gauche du pivot
+            }
+            if(droite != fin)                                       //si la partie de la liste à droite du pivot ne contient pas qu'un élément
+            {
+                Pop = trier_pop(Pop, droite->next, fin);            //on trie la droite du pivot
+            }
         }
     }
+
     return Pop;     //on renvoie la population tiée
 }
 
-Population* SelectPop(Population* Pop, int tSelect)
+Population* select_pop(Population* Pop, int tSelect)
 {
     ElemIndiv* ElemCopy = malloc(sizeof(ElemIndiv));    //on déclare un element de copie
     int i;
 
-    ElemCopy = Pop->head;
-
-    for(i = 0; i < TAILLEPOP - tSelect; i++)    //on tronque la liste pour quelle soit de taille tSelect
+    if(!vide_pop(Pop));
     {
-        Pop = supprimerQPopulation(Pop);
-    }
+        ElemCopy = Pop->head;
 
-    for(i = 0; i < TAILLEPOP - tSelect; i++)        //On remplie la liste en copiant les premier elements
-    {
-        Pop = ajouterQPopulation(Pop, ElemCopy->value);
-        ElemCopy = ElemCopy->next;
+        for(i = 0; i < TAILLEPOP - tSelect; i++)    //on tronque la liste pour quelle soit de taille tSelect
+        {
+            Pop = supprimerQ_pop(Pop);
+        }
+
+        for(i = 0; i < TAILLEPOP - tSelect; i++)        //On remplie la liste en copiant les premier elements
+        {
+            Pop = ajouterQ_pop(Pop, ElemCopy->value);
+            ElemCopy = ElemCopy->next;
+        }
     }
 
     return Pop;
 }
 
+Population* croiser_pop(Population* P1)
+{
+    Individu* indiv1 = creer_indiv();       //declaration des variables
+    Individu* indiv2 = creer_indiv();
+    ElemIndiv* elemCroise = malloc(sizeof(ElemIndiv));
+    Population* P2 = creer_pop();
+    int i, j, rnd;
+
+    if(!vide_pop(P1))
+    {
+        for(i = 0; i < TAILLEPOP/2; i++)
+        {
+            rnd = rand()%(TAILLEPOP-1)+1;   //on choisit la position du premier element à croiser
+            elemCroise = P1->head;
+
+            for(j = 1; j < rnd; j++)    //on positionne elemCroise dessus
+            {
+                elemCroise = elemCroise->next;
+            }
+
+            indiv1 = copyIndividu(elemCroise->value);       //on copie la valeur du premier element pour ne pas modifier P1
+            indiv2 = copyIndividu(elemCroise->next->value); //pareillement avec le deuxieme element
+            croiser_indiv(indiv1, indiv2);       //on les croise
+
+            P2 = ajouterT_pop(P2, indiv1);    //on les ajoutes
+            P2 = ajouterT_pop(P2, indiv2);
+        }
+
+        if(TAILLEPOP%2)         //si la taille de la population est impaire on ajoute un élément en plus
+        {
+            rnd = rand()%(TAILLEPOP-1)+1;
+            elemCroise = P1->head;
+
+            for(j = 1; j < rnd; j++)
+            {
+                elemCroise = elemCroise->next;
+            }
+
+            indiv1 = copyIndividu(elemCroise->value);
+            indiv2 = copyIndividu(elemCroise->next->value);
+            croiser_indiv(indiv1, indiv2);
+            P2 = ajouterT_pop(P2, indiv1);
+        }
+    }
+
+    return P2;
+}
 
 
 
