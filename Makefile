@@ -1,20 +1,34 @@
+DEBUG=yes
 CC=gcc
-C_STANDARD = -std=c99
-CFLAGS = -c -Wall ${C_STANDARD}
+ifeq ($(DEBUG), yes)
+	CFLAGS=-W -Wall -pedantic -g
+	LDFLAGS=-lm
+else
+	CFLAGS=-W -Wall -pedantic
+	LDFLAGS=-lm
+endif
+EXEC=projet
+SRC=$(wildcard *.c)
+OBJ=$(SRC:.c=.o)
 
-all: executable
 
-executable: main.o BibIndiv.o BibPop.o
-		$(CC) -o executable main.o BibIndiv.o BibPop.o -lm 
+all: $(EXEC)
+ifeq ($(DEBUG), yes)
+	@echo "Génération en mode debug"
+else
+	@echo "Génération en mode release"
+endif
 
-main.o: main.c BibIndiv.h BibPop.h BibGeneral.h
-		$(CC) -o main.o $(CFLAGS) main.c 
+$(EXEC): $(OBJ)
+	@$(CC) -o $@ $^ $(LDFLAGS)
 
-BibIndiv.o: BibIndiv.c BibIndiv.h BibGeneral.h
-		$(CC) -o BibIndiv.o $(CFLAGS) BibIndiv.c 
+%.o: %.c
+	@$(CC) -o $@ -c $< $(CFLAGS)
 
-BibPop.o: BibPop.c BibIndiv.h BibPop.h BibGeneral.h
-	  $(CC) -o BibPop.o $(CFLAGS) BibPop.c 
+.PHONY: clean mrproper
 
-clean: 
-	rm -rf *.o executable
+clean:
+	@rm -rf *.o
+
+mrproper: clean
+	@rm -rf $(EXEC)

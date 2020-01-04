@@ -1,10 +1,11 @@
+#include "BibGeneral.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "BibGeneral.h"
-#include "BibIndiv.h"
-#include "BibPop.h"
 #include <time.h>
 #include <math.h>
+#include "BibIndiv.h"
+#include "BibPop.h"
+
 Population* creer_pop(void)
 {
     Population* Pop = malloc(sizeof(Population));     //on déclare la structure
@@ -186,7 +187,7 @@ Population* select_pop(Population* Pop, int tSelect)
     ElemIndiv* ElemCopy = malloc(sizeof(ElemIndiv));    //on déclare un element de copie
     int i;
 
-    if(!vide_pop(Pop));
+    if(!vide_pop(Pop))
     {
         ElemCopy = Pop->head;
 

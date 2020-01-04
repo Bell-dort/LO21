@@ -1,9 +1,10 @@
+#include "BibGeneral.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "BibIndiv.h"
 #include <math.h>
-#include "BibGeneral.h"
+#include "BibIndiv.h"
+
 
 void croiser_indiv(Individu* l1, Individu* l2)       //croise 2 individus entre eux en invertissant leurs Bits
 {

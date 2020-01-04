@@ -1,9 +1,10 @@
+#include "BibGeneral.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "BibGeneral.h"
+#include <time.h>
 #include "BibIndiv.h"
 #include "BibPop.h"
-#include <time.h>
+
 
 int main()
 {
@@ -19,7 +20,7 @@ int main()
     {
 
         Pop = trier_pop(Pop, Pop->head, Pop->tail);
-        Pop = select_pop(Pop);
+        Pop = select_pop(Pop, TSELECT);
         Pop = croiser_pop(Pop);
     }
     printf("pop opti :\n");
