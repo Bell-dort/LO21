@@ -212,22 +212,35 @@ Population* croiser_pop(Population* P1)
     Individu* indiv2 = creer_indiv();
     ElemIndiv* elemCroise = malloc(sizeof(ElemIndiv));
     Population* P2 = creer_pop();
-    int i, j, rnd;
+    int i, j, rnd1, rnd2;
 
     if(!vide_pop(P1))
     {
         for(i = 0; i < TAILLEPOP/2; i++)
         {
-            rnd = rand()%(TAILLEPOP-1)+1;   //on choisit la position du premier element à croiser
+            rnd1 = rand()%(TAILLEPOP-1)+1;   //on choisit la position du premier element à croiser
             elemCroise = P1->head;
 
-            for(j = 1; j < rnd; j++)    //on positionne elemCroise dessus
+            for(j = 1; j < rnd1; j++)    //on positionne elemCroise dessus
             {
                 elemCroise = elemCroise->next;
             }
 
             indiv1 = copyIndividu(elemCroise->value);       //on copie la valeur du premier element pour ne pas modifier P1
+
+            do
+            {
+                rnd2 = rand()%(TAILLEPOP-1)+1;   //on choisit la position du deuxieme element à croiser
+            }while(rnd1 == rnd2);
+
+            elemCroise = P1->head;
+            for(j = 1; j < rnd2; j++)    //on positionne elemCroise dessus
+            {
+                elemCroise = elemCroise->next;
+            }
+
             indiv2 = copyIndividu(elemCroise->next->value); //pareillement avec le deuxieme element
+
             croiser_indiv(indiv1, indiv2);       //on les croise
 
             P2 = ajouterT_pop(P2, indiv1);    //on les ajoutes
@@ -236,18 +249,32 @@ Population* croiser_pop(Population* P1)
 
         if(TAILLEPOP%2)         //si la taille de la population est impaire on ajoute un élément en plus
         {
-            rnd = rand()%(TAILLEPOP-1)+1;
+            rnd1 = rand()%(TAILLEPOP-1)+1;   //on choisit la position du premier element à croiser
             elemCroise = P1->head;
 
-            for(j = 1; j < rnd; j++)
+            for(j = 1; j < rnd1; j++)    //on positionne elemCroise dessus
             {
                 elemCroise = elemCroise->next;
             }
 
-            indiv1 = copyIndividu(elemCroise->value);
-            indiv2 = copyIndividu(elemCroise->next->value);
-            croiser_indiv(indiv1, indiv2);
-            P2 = ajouterT_pop(P2, indiv1);
+            indiv1 = copyIndividu(elemCroise->value);       //on copie la valeur du premier element pour ne pas modifier P1
+
+            do
+            {
+                rnd2 = rand()%(TAILLEPOP-1)+1;   //on choisit la position du deuxieme element à croiser
+            }while(rnd1 == rnd2);
+
+            elemCroise = P1->head;
+            for(j = 1; j < rnd2; j++)    //on positionne elemCroise dessus
+            {
+                elemCroise = elemCroise->next;
+            }
+
+            indiv2 = copyIndividu(elemCroise->next->value); //pareillement avec le deuxieme element
+
+            croiser_indiv(indiv1, indiv2);       //on les croise
+
+            P2 = ajouterT_pop(P2, indiv1);    //on ajoute un élément
         }
     }
 

@@ -197,3 +197,39 @@
 	<time.h>
 	<math.h>
 
+1577753827 source:d:\documents\cours\tc\tc 03\lo21\lo21-fini\bibindiv.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"BibIndiv.h"
+	<math.h>
+	"BibGeneral.h"
+
+1577753702 d:\documents\cours\tc\tc 03\lo21\lo21-fini\bibindiv.h
+	"BibGeneral.h"
+
+1577752378 d:\documents\cours\tc\tc 03\lo21\lo21-fini\bibgeneral.h
+	<stdio.h>
+	<stdlib.h>
+
+1577754471 source:d:\documents\cours\tc\tc 03\lo21\lo21-fini\main.c
+	<stdio.h>
+	<stdlib.h>
+	"BibGeneral.h"
+	"BibIndiv.h"
+	"BibPop.h"
+	<time.h>
+
+1577754452 d:\documents\cours\tc\tc 03\lo21\lo21-fini\bibpop.h
+	"BibGeneral.h"
+	"BibIndiv.h"
+
+1578150370 source:d:\documents\cours\tc\tc 03\lo21\lo21-fini\bibpop.c
+	<stdio.h>
+	<stdlib.h>
+	"BibGeneral.h"
+	"BibIndiv.h"
+	"BibPop.h"
+	<time.h>
+	<math.h>
+
