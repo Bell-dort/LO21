@@ -233,3 +233,71 @@
 	<time.h>
 	<math.h>
 
+1578242384 source:c:\users\thoma\downloads\lo21-master\bibindiv.c
+	"BibGeneral.h"
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<math.h>
+	"BibIndiv.h"
+
+1578242054 c:\users\thoma\downloads\lo21-master\bibgeneral.h
+	<stdio.h>
+	<stdlib.h>
+
+1578242054 c:\users\thoma\downloads\lo21-master\bibindiv.h
+	"BibGeneral.h"
+
+1578244867 source:c:\users\thoma\downloads\lo21-master\bibpop.c
+	"BibGeneral.h"
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<math.h>
+	"BibIndiv.h"
+	"BibPop.h"
+
+1578242054 c:\users\thoma\downloads\lo21-master\bibpop.h
+
+1578244867 source:c:\users\thoma\downloads\lo21-master\main.c
+	"BibGeneral.h"
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"BibIndiv.h"
+	"BibPop.h"
+
+1578255465 source:d:\bureau\lo21-frost-kun-modifs\bibindiv.c
+	"BibGeneral.h"
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<math.h>
+	"BibIndiv.h"
+
+1578256733 d:\bureau\lo21-frost-kun-modifs\bibgeneral.h
+	<stdio.h>
+	<stdlib.h>
+
+1578258983 d:\bureau\lo21-frost-kun-modifs\bibindiv.h
+	"BibGeneral.h"
+
+1578245118 source:d:\bureau\lo21-frost-kun-modifs\bibpop.c
+	"BibGeneral.h"
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<math.h>
+	"BibIndiv.h"
+	"BibPop.h"
+
+1578245118 d:\bureau\lo21-frost-kun-modifs\bibpop.h
+
+1578256719 source:d:\bureau\lo21-frost-kun-modifs\main.c
+	"BibGeneral.h"
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"BibIndiv.h"
+	"BibPop.h"
+

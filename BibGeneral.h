@@ -3,11 +3,11 @@
 // On place ici des constantes du préprocesseur
 // pour faciliter le changement des paramètres du projet
 
-#define LONGINDIV 8  // Longueur d'un individu:
+#define LONGINDIV 16  // Longueur d'un individu:
 #define PCROISE 0.5  // Probabilité de croisement:
-#define TAILLEPOP 5  // Taille de la population:
-#define TSELECT 4  // Taux de sélection:
-#define NGEN 20  // Nombre de générations:
+#define TAILLEPOP 200  // Taille de la population:
+#define TSELECT 180  // Taux de sélection:
+#define NGEN 200  // Nombre de générations:
 
 #include <stdio.h>
 #include <stdlib.h>

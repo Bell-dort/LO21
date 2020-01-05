@@ -17,10 +17,10 @@ Individu* initRecur_indiv(Individu*, int); //version recursive de la fonction pr
 int vide_indiv(Individu*); // Verifie si la liste de bits est vide. Renvoie 1 si oui, 0 si non
 void afficher_indiv(Individu*); // Permet d'afficher la liste de bits
 
-int decodage_indiv(Individu*);    //décode la liste de bit en un nombre entier
-float qualiteIndivf1(int);  //calcule la qualtité d'un individu avec la fonction f1 en fonction de son décodage
-float qualiteIndivf2(int);  //calcule la qualtité d'un individu avec la fonction f2 en fonction de son décodage
-float qualiteIndivf3(int);  //calcule la qualtité d'un individu avec la fonction f3 en fonction de son décodage
+unsigned int decodage_indiv(Individu*);    //décode la liste de bit en un nombre entier
+float qualiteIndivf1(unsigned int);  //calcule la qualtité d'un individu avec la fonction f1 en fonction de son décodage
+float qualiteIndivf2(unsigned int);  //calcule la qualtité d'un individu avec la fonction f2 en fonction de son décodage
+float qualiteIndivf3(unsigned int);  //calcule la qualtité d'un individu avec la fonction f3 en fonction de son décodage
 void croiser_indiv(Individu*, Individu*);  //croise deux individus entres eux
 
 #endif // BIBINDIV_H_INCLUDED

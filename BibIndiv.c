@@ -136,10 +136,10 @@ void afficher_indiv(Individu* indiv)         //affiche un individu
 	}
 	printf("\n\n");
 }
-
-int decodage_indiv(Individu* indiv)               //lit la liste de Bits d'un individu et en calcule sa valeur
+unsigned int decodage_indiv(Individu* indiv)               //lit la liste de Bits d'un individu et en calcule sa valeur
 {
-	int valIndiv = 0, i = LONGINDIV - 1;
+	unsigned int valIndiv = 0;
+	int i = LONGINDIV - 1;
 	ElemBit* temp = indiv->head;
 
 	while(temp->next != NULL)
@@ -151,7 +151,7 @@ int decodage_indiv(Individu* indiv)               //lit la liste de Bits d'un in
 	return valIndiv;
 }
 
-float qualiteIndivf1(int valIndiv)     /*première version de la fonction qui calcule la qualité d'un individu à partir de sa valeur,
+float qualiteIndivf1(unsigned int valIndiv)     /*première version de la fonction qui calcule la qualité d'un individu à partir de sa valeur,
                                                 obtenue par la fonction "decodage"*/
 {
     int longIndiv = 8;
@@ -164,7 +164,7 @@ float qualiteIndivf1(int valIndiv)     /*première version de la fonction qui ca
 }
 
 
-float qualiteIndivf2(int valIndiv)     /*deuxieme version de la fonction qui calcule la qualité d'un individu à partir de sa valeur,
+float qualiteIndivf2(unsigned int valIndiv)     /*deuxieme version de la fonction qui calcule la qualité d'un individu à partir de sa valeur,
                                                      obtenue par la fonction "decodage"*/
 {
     int longIndiv = 16;
@@ -177,7 +177,7 @@ float qualiteIndivf2(int valIndiv)     /*deuxieme version de la fonction qui cal
 	return resultat;
 }
 
-float qualiteIndivf3(int valIndiv)     /*troisième version de la fonction qui calcule la qualité d'un individu à partir de sa valeur,
+float qualiteIndivf3(unsigned int valIndiv)     /*troisième version de la fonction qui calcule la qualité d'un individu à partir de sa valeur,
                                                      obtenue par la fonction "decodage"*/
 {
     int longIndiv = 32;
