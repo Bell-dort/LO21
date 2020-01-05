@@ -239,7 +239,7 @@ Population* croiser_pop(Population* P1)
                 elemCroise = elemCroise->next;
             }
 
-            indiv2 = copy_indiv(elemCroise->next->value); //pareillement avec le deuxieme element
+            indiv2 = copy_indiv(elemCroise->value); //pareillement avec le deuxieme element
 
             croiser_indiv(indiv1, indiv2);       //on les croise
 
@@ -270,7 +270,7 @@ Population* croiser_pop(Population* P1)
                 elemCroise = elemCroise->next;
             }
 
-            indiv2 = copy_indiv(elemCroise->next->value); //pareillement avec le deuxieme element
+            indiv2 = copy_indiv(elemCroise->value); //pareillement avec le deuxieme element
 
             croiser_indiv(indiv1, indiv2);       //on les croise
 

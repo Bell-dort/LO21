@@ -193,7 +193,8 @@ float qualiteIndivf3(int valIndiv)     /*troisième version de la fonction qui c
 Individu* copy_indiv(Individu* indiv1)    //Copie un individu
 {
     Individu* indiv2 = creer_indiv();    //declaration des variables
-    ElemBit* elemParc = indiv1->head;
+    ElemBit* elemParc = malloc(sizeof(ElemBit));
+    elemParc = indiv1->head;
     int i;
 
     for(i = 0; i < LONGINDIV; i++)  //on ajoute dans indiv2 chaque bit de indiv1
