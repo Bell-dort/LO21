@@ -1,7 +1,7 @@
 
 CC=gcc
 EXEC = prog
-SRC = $(willcard *.c)
+SRC = $(wildcard *.c)
 OBJ = $(SRC:.c=.o)
 
 all: $(EXEC)
