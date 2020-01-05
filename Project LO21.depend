@@ -89,41 +89,39 @@
 	<math.h>
 	"BibGeneral.h"
 
-1577200455 source:d:\bureau\lo21-master\bibindiv.c
+1578266116 source:d:\bureau\lo21-master\bibindiv.c
+	"BibGeneral.h"
 	<stdio.h>
 	<stdlib.h>
-	<time.h>
-	"BibIndiv.h"
-	<math.h>
-	"BibGeneral.h"
-
-1577200455 d:\bureau\lo21-master\bibindiv.h
-	"BibGeneral.h"
-
-1576674771 d:\bureau\lo21-master\bibgeneral.h
-	<stdio.h>
-	<stdlib.h>
-
-1577201659 source:d:\bureau\lo21-master\main.c
-	<stdio.h>
-	<stdlib.h>
-	"BibGeneral.h"
-	"BibIndiv.h"
-	"BibPop.h"
-	<time.h>
-
-1577144851 d:\bureau\lo21-master\bibpop.h
-	"BibGeneral.h"
-	"BibIndiv.h"
-
-1577201582 source:d:\bureau\lo21-master\bibpop.c
-	<stdio.h>
-	<stdlib.h>
-	"BibGeneral.h"
-	"BibIndiv.h"
-	"BibPop.h"
 	<time.h>
 	<math.h>
+	"BibIndiv.h"
+
+1578266116 d:\bureau\lo21-master\bibindiv.h
+	"BibGeneral.h"
+
+1578266116 d:\bureau\lo21-master\bibgeneral.h
+	<stdio.h>
+	<stdlib.h>
+
+1578266116 source:d:\bureau\lo21-master\main.c
+	"BibGeneral.h"
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"BibIndiv.h"
+	"BibPop.h"
+
+1578266116 d:\bureau\lo21-master\bibpop.h
+
+1578266116 source:d:\bureau\lo21-master\bibpop.c
+	"BibGeneral.h"
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<math.h>
+	"BibIndiv.h"
+	"BibPop.h"
 
 1577646276 source:d:\bureau\lo21-master - copie\bibindiv.c
 	<stdio.h>
