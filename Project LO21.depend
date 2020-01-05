@@ -233,3 +233,37 @@
 	<time.h>
 	<math.h>
 
+1578242384 source:c:\users\thoma\downloads\lo21-master\bibindiv.c
+	"BibGeneral.h"
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<math.h>
+	"BibIndiv.h"
+
+1578242054 c:\users\thoma\downloads\lo21-master\bibgeneral.h
+	<stdio.h>
+	<stdlib.h>
+
+1578242054 c:\users\thoma\downloads\lo21-master\bibindiv.h
+	"BibGeneral.h"
+
+1578244867 source:c:\users\thoma\downloads\lo21-master\bibpop.c
+	"BibGeneral.h"
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<math.h>
+	"BibIndiv.h"
+	"BibPop.h"
+
+1578242054 c:\users\thoma\downloads\lo21-master\bibpop.h
+
+1578244867 source:c:\users\thoma\downloads\lo21-master\main.c
+	"BibGeneral.h"
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"BibIndiv.h"
+	"BibPop.h"
+
