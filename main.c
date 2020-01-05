@@ -10,24 +10,18 @@ int main()
 {
     srand(time(NULL));
 
-    Population* Pop = init_pop(creer_pop(), TAILLEPOP);
+    Population* Pop = init_pop(creer_pop(), TAILLEPOP);	//initialisation de la Population 
     int i;
 
-    printf("pop : \n");
-    afficher_pop(Pop);
-
-    for(i = 0; i < NGEN; i++)
+    for(i = 0; i < NGEN; i++)	//repetition NGEN fois
     {
-
-        Pop = trier_pop(Pop, Pop->head, Pop->tail);
-        Pop = select_pop(Pop, TSELECT);
-        Pop = croiser_pop(Pop);
+	Pop = croiser_pop(Pop);		//croisement de la population
+        Pop = trier_pop(Pop, Pop->head, Pop->tail); //tri de la population
+        Pop = select_pop(Pop, TSELECT);		//selection de la population
     }
-    printf("pop opti :\n");
-    afficher_pop(Pop);
 
-    printf("\nLe meilleur individu de cette population est :\n");
+    printf("\nLe meilleur individu de cette population est :\n");	//affichage du meilleur individu
     afficher_indiv(Pop->head->value);
-    printf("\ndecode : %u, Qualite : %f\n",decodage_indiv(Pop->head->value),qualiteIndivf2(decodage_indiv(Pop->head->value)));
+    printf("\nQualite : %f\n",qualiteIndivf3(decodage_indiv(Pop->head->value)));//affichage de sa qualité pour faciliter l'étude 
     return 0;
 }
