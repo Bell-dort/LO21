@@ -26,6 +26,9 @@ int main()
     printf("pop opti :\n");
     afficher_pop(Pop);
 
+    printf("\nLe meilleur individu de cette population est :\n");
+    afficher_indiv(Pop->head->value);
+    printf("\nQualite : %f\n",qualiteIndivf1(decodage_indiv(Pop->head->value)));
 
     return 0;
 }
