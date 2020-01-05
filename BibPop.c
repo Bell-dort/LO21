@@ -221,7 +221,7 @@ Population* croiser_pop(Population* P1)
             rnd1 = rand()%(TAILLEPOP-1)+1;   //on choisit la position du premier element à croiser
             elemCroise = P1->head;
 
-            for(j = 1; j < rnd1; j++)    //on positionne elemCroise dessus
+            for(j = 0; j < rnd1; j++)    //on positionne elemCroise dessus
             {
                 elemCroise = elemCroise->next;
             }
@@ -234,7 +234,7 @@ Population* croiser_pop(Population* P1)
             }while(rnd1 == rnd2);
 
             elemCroise = P1->head;
-            for(j = 1; j < rnd2; j++)    //on positionne elemCroise dessus
+            for(j = 0; j < rnd2; j++)    //on positionne elemCroise dessus
             {
                 elemCroise = elemCroise->next;
             }
@@ -252,7 +252,7 @@ Population* croiser_pop(Population* P1)
             rnd1 = rand()%(TAILLEPOP-1)+1;   //on choisit la position du premier element à croiser
             elemCroise = P1->head;
 
-            for(j = 1; j < rnd1; j++)    //on positionne elemCroise dessus
+            for(j = 0; j < rnd1; j++)    //on positionne elemCroise dessus
             {
                 elemCroise = elemCroise->next;
             }
@@ -265,7 +265,7 @@ Population* croiser_pop(Population* P1)
             }while(rnd1 == rnd2);
 
             elemCroise = P1->head;
-            for(j = 1; j < rnd2; j++)    //on positionne elemCroise dessus
+            for(j = 0; j < rnd2; j++)    //on positionne elemCroise dessus
             {
                 elemCroise = elemCroise->next;
             }
