@@ -1,18 +1,18 @@
 #ifndef BIBGENERAL_H_INCLUDED
 #define BIBGENERAL_H_INCLUDED
-// On place ici des constantes du préprocesseur
-// pour faciliter le changement des paramètres du projet
+// On place ici des constantes du prÃ©processeur
+// pour faciliter le changement des paramÃ¨tres du projet
 
-#define LONGINDIV 32  // Longueur d'un individu:
-#define PCROISE 0.5  // Probabilité de croisement:
+#define LONGINDIV 8  // Longueur d'un individu:
+#define PCROISE 0.5  // ProbabilitÃ© de croisement:
 #define TAILLEPOP 200  // Taille de la population:
-#define TSELECT 180  // Taux de sélection:
-#define NGEN 200  // Nombre de générations:
+#define TSELECT 180  // Taux de sÃ©lection:
+#define NGEN 200  // Nombre de gÃ©nÃ©rations:
 
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef unsigned char Bit; // définition d'un bit compris entre 0 et 1
+typedef unsigned char Bit; // dÃ©finition d'un bit compris entre 0 et 1
 
 typedef struct Elemb
 {
